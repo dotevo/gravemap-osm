@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Wyszukiwarka grobów na OSM</title>    
     <link rel="stylesheet" href="lib/leaflet/leaflet.css" />
-    <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
+   <link rel="stylesheet" href="lib/bootstrap/bootstrap.min.css">
     <link rel="stylesheet" href="lib/bootstrap/bootstrap-additions.min.css">
     <link rel="stylesheet" href="lib/angular-strap/angular-motion.min.css">
     <link rel="stylesheet" href="style.css"/>
@@ -16,21 +16,39 @@
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-inner">
-          <a class="navbar-brand" href=".">Wyszukiwarka grobów na <abbr title="OpenStreetMap">OSM</abbr><sup>&beta;</sup></a>
-          <a class="btn btn-primary btn-sm" ng-click="loadData()">Załaduj groby z obszaru</a>
-          <a class="btn btn-primary btn-sm" ng-click="loadDataPopup()">Zaawansowane ładowanie danych</a>
+           <a class="navbar-brand" href=".">OpenStreetMap Grave Finder<br><i>(Wyszukiwarka grobów na <abbr title="OpenStreetMap">OSM)</i></abbr></a>
+          <a class="btn btn-primary btn-sm" ng-click="loadData()">Load graves from area<br><i>Załaduj groby z obszaru</i></a>
           <span ng-show="busy" style="margin-left: 10px;">
-            <i class="fa fa-refresh fa-spin" backgroung=red></i> Wczytywanie...
+            <i class="fa fa-refresh fa-spin" backgroung=red></i> Loading...
           </span>
+          <clear>
           <div class="absolute-right">
+             <div class="navbar-choice">
+             <select id="language" onchange="ChangeLanguage(this.value);" >
+                  <option class="SelectItem" value="pl" selected>Polski</option>
+                  <option class="SelectItem" value="en">English</option>
+                </select>
+                <span class="btn-primary">
+                  <label for="language">Language</label>
+                 </span>
+            </div>
+
             <form ng-submit="search()">
               <div class="input-group">
-                <input type="text" class="form-control" ng-model="searchText" placeholder="miejscowość">
+                <input type="text" class="form-control" ng-model="searchText" placeholder="place">
                 <span class="input-group-btn">
-                  <input type="submit" id="submit" class="btn btn-default" value="Szukaj" />
+                  <input type="submit" id="submit" class="btn btn-primary" value="Miejscowość" /><br>
                 </span>
               </div>
             </form>
+            <form ng-submit="searchGraves()">
+            <div class="input-group">
+               <input id="searchName" type="text" class="form-control" ng-model="searchGrave.nameText" placeholder="name">
+                  <span class="input-group-btn">
+               <input type="submit" id="submit" class="btn btn-primary" value="Nazwisko" />
+                  </span>
+            </div>
+          </form>
           </div>
         </div>
       </div>
@@ -38,7 +56,7 @@
     <div class="map-container">
       <div id="map"></div>
     </div>
-    <div id="footer">
+     <div id="footer">
       <div class="container">
         <div class="text-muted pull-left"><small>© 2014</small> <a href="https://github.com/yarl">Yarl</a>. 2024 <a href="https://github.com/dotevo">Dotevo</a>. 2024 <a href="https://github.com/wlakom">Wlakom</a> & contributors. Podkład mapowy autorstwa OpenStreetMap, lic. <a href="http://www.openstreetmap.org/copyright">CC-By-SA</a>.</div>
       </div>
