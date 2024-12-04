@@ -10,45 +10,51 @@
       </div>    
       
       <div class="aside-body">
-      </div>
-          <h3>Informacje</h3>
-               <ng-show="active.tags['name']"><h3><i> {{active.tags['name']}}</i></h3> 
-           <div class="aside-section aside-tags">
-             
+
+              <div <ng-show="active.tags['name']"><h5><b>{{active.tags['name']}}</b></h5>
+         <div class="aside-section aside-tags">
              <div ng-show="active.tags['wikimedia_commons']">
-             <img ng-src="https://commons.wikimedia.org/w/thumb.php?f={{active.tags['wikimedia_commons'].substring(5)}}&w=300" alt="Zdjęcie grobu">
+             <img ng-src="https://commons.wikimedia.org/w/thumb.php?f={{active.tags['wikimedia_commons'].substring(5)}}&w=300" alt="Zdjęcie grobu z Wikimedii">
              </div>
              
              <div ng-show="active.tags.flickr">
-             <img ng-src="{{active.tags['flickr']}}" alt="Zdjęcie grobu (Flickr)"> 
+             <img ng-src="{{active.tags['flickr']}}" alt="Zdjęcie grobu z Flickr" width="300"> 
              </div>
 
              <div ng-show="active.tags.image">
-            <img ng-src="{{active.tags['image']}}" alt="Zdjęcie grobu">
+             <img ng-src="{{active.tags['image']}}" alt="Zdjęcie grobu" width="300">
              </div>
-              <b>Lokalizacja:</b><br>
-             <div class="aside-section aside-tags">
-              <div ng-show="active.tags['sector:name']">- Sektor: <i>{{active.tags['sector:name']}}</i></div>
-              <div ng-show="active.tags['sector:row']">- Rząd: <i>{{active.tags['sector:row']}}</i></div>
-              <div ng-show="active.tags['sector:place']">- Miejsce: <i>{{active.tags['sector:place']}}</i></div>
-            </div>
-            <div ng-show="active.tags['ref']">Numer referencyjny: {{active.tags['ref']}}</div>
             <div ng-show="active.tags.description"><i>{{active.tags.description}}</i></div>
-            
+                     <h6>{{active.tags.religion}} {{active.tags.denomination}}</h6>            
+             <div class="aside-section aside-header">           
+              <b>Location <i>(Lokalizacja)</i>:</b><br>
+             </div>
+
+            <div class="aside-section aside-tags">
+              <div ng-show="active.latlng">Coordinates (Współrządne): <i><a href="https://nominatim.openstreetmap.org/search?q={{active.latlng}}" target="_blank">{{active.latlng}}</a></i></div>              
+              <div ng-show="active.tags['ref']">Ref: <i>{{active.tags['ref']}}</i></div>           
+              <div ng-show="active.tags['sector:name']">&mdash; Sector (Sektor): <i>{{active.tags['sector:name']}}</i></div>
+              <div ng-show="active.tags['sector:row']">&mdash; Row (Rząd): <i>{{active.tags['sector:row']}}</i></div>
+              <div ng-show="active.tags['sector:place']">&mdash; Place (Miejsce): <i>{{active.tags['sector:place']}}</i></div>
+            </div>
           </div>
-          <hr/>
+
+                <div class="aside-section aside-header">           
+              <b>Buried <i>(Pochowani)</i>:</b><br>
+               </div>
           <div class="aside-section aside-tags">
             <div ng-repeat="person in active.people">
-              <h4  ng-hide="person.tags.wikipedia"><b></b>{{person.name}}</b></h4>
-              <h4 ng-show="person.tags.wikipedia"><b></b><a href="https://en.wikipedia.org/wiki/{{person.tags.wikipedia}}" target="_blank">{{person.name}}</a></b></h4>
-              <div ng-show="person.tags.family_name">Nazwisko rodowe: {{person.tags.family_name}}</div>
+              <h4  ng-hide="person.tags.wikipedia"><b>{{person.name}}</b></h4>
+              <h4 ng-show="person.tags.wikipedia"><b><a href="https://en.wikipedia.org/wiki/{{person.tags.wikipedia}}" target="_blank">{{person.name}}</a></b></h4>
+              <div ng-show="person.tags.family_name">Nee <i>(z.d.)</i>: <b>{{person.tags.family_name}}</b></div>
+              <h6>{{person.tags.religion}} {{person.tags.denomination}}</h6>            
               
               <div ng-show="person.tags['image']">
               <img ng-src="{{person.tags['image']}}" alt="Zdjęcie zmarłego" width="300">
             </div>
               
                <div ng-show="person.tags['wikimedia_commons']">
-              <img ng-src="https://commons.wikimedia.org/w/thumb.php?f={{person.tags['wikimedia_commons'].substring(5)}}&w=200" alt="Zdjęcie zmarłego z Wikimedii">
+              <img ng-src="https://commons.wikimedia.org/w/thumb.php?f={{person.tags['wikimedia_commons'].substring(5)}}&w=300" alt="Zdjęcie zmarłego z Wikimedii">
             </div>
               
              <div ng-show="person.tags.flickr">
@@ -57,9 +63,9 @@
               
                 <div ng-show="person.tags.description"><i>{{person.tags.description}}</i></div>
               <div>{{person.tags.born ? person.tags.born : '??'}} &mdash; {{person.tags.died ? person.tags.died : '??'}}</div>
-              <div ng-show="person.tags.birthplace">Miejsce urodzenia: <i>{{person.tags.birthplace}}</i></div>
-              <div ng-show="person.tags.lived_in">Miejsce zamieszkania: <i>{{person.tags.lived_in}}</i></div>
-              <div ng-show="person.tags.deathplace">Miejsce zgonu: <i>{{person.tags.deathplace}}</i></div>
+              <div ng-show="person.tags.birthplace">Birthplace <i>(Miejsce urodzenia)</i>: <i>{{person.tags.birthplace}}</i></div>
+              <div ng-show="person.tags.deathplace">Deathplace <i>(Miejsce zgonu)</i>: <i>{{person.tags.deathplace}}</i></div>
+              <div ng-show="person.tags.lived_in">Lived_in <i>(Miejsce zamieszkania)</i>: <i>{{person.tags.lived_in}}</i></div>
             </div>
           </div>
       </div>
