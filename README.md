@@ -8,6 +8,12 @@ OpenStreetMap Grave Finder
 I am a beginner user of GitHub. I would like to develop this repository, but I do not know how to do it.
 
 Things to do:
+
++ The name "Fuchs" has "sector:name-N". but this information is not visible. Every letter matches except "N"
++ Search by location is broken. After entering the name, you have to press twice. First it is 14/52.0000/19.5000
++ The map covers the inscription in "footer" which is on a white background.
+
++ 
 + Depending on the language selection, Polish, English, display subtitles on the main and side page.
  -
   * en:OpenStreetMap Grave Finder
