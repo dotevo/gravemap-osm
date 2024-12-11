@@ -47,7 +47,7 @@ app.controller('MapCtrl', ['$scope', '$http', '$aside', '$alert', '$modal', func
     $scope.initMap = function() {
       $scope.map = L.map('map', {
         center: [52, 19.5],
-        zoom: 7,
+        zoom: 6,
         layers: [new L.tileLayer($scope.static.background, {
             attributionControl: false,
             maxZoom: 23,
@@ -73,8 +73,8 @@ app.controller('MapCtrl', ['$scope', '$http', '$aside', '$alert', '$modal', func
                 if (data.length > 0) {
                   var item = data[0];
                   $scope.map.setView([item.lat, item.lon]);
-                  if ($scope.map.getZoom() < 15)
-                    $scope.map.setZoom(15);
+                  if ($scope.map.getZoom() < 13)
+                    $scope.map.setZoom(13);
                 }
               }).
               error(function(data, status) {
@@ -120,7 +120,7 @@ app.controller('MapCtrl', ['$scope', '$http', '$aside', '$alert', '$modal', func
               b.getNorthWest().lat + ',' + b.getSouthEast().lng + ')';
 
       $scope.busy = true;
-      const query = '[out:json];(rel[name~"'+ name +'"][type="person"]' + bbox + ';rel[family_name~"'+ name +'"][type="person"]' + bbox + ';);>>; out;';
+    const query = '[out:json];(rel[name~"'+ name +'",i][type="person"]' + bbox + ';rel[family_name~"'+ name +'",i][type="person"]' + bbox + ';);>>; out;';
       console.log(query);
       $http({
         method: 'GET',
@@ -263,3 +263,4 @@ app.controller('MapCtrl', ['$scope', '$http', '$aside', '$alert', '$modal', func
       }
     };
   }]);
+
