@@ -44,22 +44,6 @@ app.controller('MapCtrl', ['$scope', '$http', '$aside', '$alert', '$modal', func
      * Init map
      * @returns {void}
      */
-    $scope.initMap = function() {
-      $scope.map = L.map('map', {
-        center: [52, 19.5],
-        zoom: 6,
-        layers: [new L.tileLayer($scope.static.background, {
-            attributionControl: false,
-            maxZoom: 23,
-            maxNativeZoom: 19,
-            opacity: .8
-          }), $scope.graves.layer]
-      });
-      new L.Hash($scope.map);
-      $scope.map.attributionControl.setPrefix('');
-    };
-    $scope.initMap();
-
  $scope.initMap = function() {
   $scope.map = L.map('map', {
     center: [52, 19.5],
